@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-httpx
-google-generativeai
-python-dotenv
-gTTS
-langchain
-langchain-google-genai
-edge-tts
