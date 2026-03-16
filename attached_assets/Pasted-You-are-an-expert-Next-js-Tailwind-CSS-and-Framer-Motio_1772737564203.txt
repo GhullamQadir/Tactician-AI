@@ -1,0 +1,140 @@
+You are an expert Next.js, Tailwind CSS, and Framer Motion developer. I want to completely redesign my current `app/page.tsx` so it no longer looks like a SaaS marketing website. It must feel like an immersive, real-time 3D AI Agent Dashboard for live cricket strategy.
+
+Please overwrite my existing `app/page.tsx` with the following code. Do not change the `ContainerScroll` component, just update the page layout to match this new agentic, 3D-animated feel.
+
+Key Requirements for the new UI:
+1. Remove all generic website headers (Platform, Models, Pricing, Sign In).
+2. Create a top "Agent Status Bar" showing connection status and live latency.
+3. Add a Live Cricket Scorecard inside the 3D scroll container.
+4. Add an animated AI Voice Visualizer to make it feel like the agent is actively "listening" and "thinking".
+
+Here is the complete code for `app/page.tsx`:
+
+"use client";
+import React from "react";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { motion } from "framer-motion";
+import { Activity, Mic, Radio, Zap, AlertTriangle, ShieldAlert } from "lucide-react";
+
+export default function AgentDashboard() {
+  return (
+    <div className="flex flex-col overflow-hidden pb-[100px] pt-[50px] bg-[#050505] min-h-screen text-white font-sans">
+      
+      {/* Top Agent Status Bar (Replacing traditional SaaS Navbar) */}
+      <nav className="w-full px-8 py-4 flex justify-between items-center border-b border-white/5 bg-black/50 backdrop-blur-md fixed top-0 z-50">
+        <div className="flex items-center gap-3">
+          <div className="relative flex h-4 w-4">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500"></span>
+          </div>
+          <span className="font-bold text-lg tracking-wider">TACTICIAN.AI <span className="text-emerald-500 font-mono text-sm ml-2">CORE_ONLINE</span></span>
+        </div>
+        <div className="flex gap-6 font-mono text-xs text-gray-400">
+          <span className="flex items-center gap-2"><Radio size={14} className="text-emerald-500"/> DATA STREAM: ACTIVE</span>
+          <span className="flex items-center gap-2"><Zap size={14} className="text-yellow-500"/> LATENCY: 12ms</span>
+        </div>
+      </nav>
+
+      {/* Main 3D Container Area */}
+      <ContainerScroll
+        titleComponent={
+          <div className="mb-8 mt-20">
+            <h1 className="text-4xl md:text-5xl font-semibold text-white text-center">
+              Live Match <br />
+              <span className="text-5xl md:text-[6rem] font-bold mt-1 leading-none text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-500 to-blue-500 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">
+                Command Center
+              </span>
+            </h1>
+          </div>
+        }
+      >
+        <div className="relative h-full w-full bg-[#0a0a0a] rounded-2xl p-6 flex flex-col gap-6 overflow-hidden">
+          {/* Animated Background Grid Effect */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
+            
+            {/* Left Column: Live Scorecard */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
+              className="col-span-1 md:col-span-2 bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-xl p-6 shadow-2xl flex flex-col justify-between"
+            >
+              <div className="flex justify-between items-center border-b border-zinc-800 pb-4">
+                <span className="text-red-500 font-mono font-bold animate-pulse flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-500"></span> LIVE
+                </span>
+                <span className="text-gray-400 font-mono text-sm">ICC Men's World Cup - Final</span>
+              </div>
+              
+              <div className="flex justify-between items-center my-6">
+                <div className="text-center">
+                  <h2 className="text-4xl font-bold text-white">PAK</h2>
+                  <p className="text-emerald-400 text-3xl font-mono mt-2">184/3</p>
+                  <p className="text-gray-500 text-sm mt-1">Overs: 16.4</p>
+                </div>
+                <div className="text-3xl font-bold text-zinc-700">VS</div>
+                <div className="text-center">
+                  <h2 className="text-4xl font-bold text-gray-400">AUS</h2>
+                  <p className="text-gray-600 text-xl font-mono mt-2">Yet to bat</p>
+                </div>
+              </div>
+
+              <div className="bg-zinc-950 p-4 rounded-lg border border-zinc-800 flex justify-between">
+                <div>
+                  <p className="text-xs text-gray-500">Current Batter</p>
+                  <p className="text-white font-semibold">B. Azam <span className="text-emerald-500 font-mono">68* (42)</span></p>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-gray-500">Current Bowler</p>
+                  <p className="text-white font-semibold">M. Starc <span className="text-gray-400 font-mono">2-0-18-1</span></p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column: AI Agent Interface */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}
+              className="col-span-1 bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-6 flex flex-col justify-between relative overflow-hidden"
+            >
+               {/* Glowing effect behind agent */}
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl"></div>
+
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-black border border-emerald-500 flex items-center justify-center">
+                    <Mic className="text-emerald-400 w-5 h-5 animate-pulse" />
+                  </div>
+                  <div>
+                    <h3 className="text-emerald-400 font-bold">Tactician Voice Agent</h3>
+                    <p className="text-xs text-emerald-500/70 font-mono">Listening & Analyzing...</p>
+                  </div>
+                </div>
+
+                {/* Animated Voice Visualizer Bars */}
+                <div className="flex gap-1 items-end h-16 mb-6 justify-center">
+                  {[...Array(12)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      animate={{ height: ["20%", "80%", "40%", "100%", "30%"] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut", delay: i * 0.1 }}
+                      className="w-2 bg-emerald-500 rounded-t-sm"
+                    ></motion.div>
+                  ))}
+                </div>
+
+                <div className="bg-black/60 p-4 rounded-lg border border-emerald-500/20 text-sm text-gray-300 leading-relaxed font-mono">
+                  &gt; Pitch map indicates Starc is aiming for blockhole. <br/>
+                  &gt; Recommend: Pre-meditate deep in the crease. <br/>
+                  <span className="text-emerald-400 mt-2 block animate-pulse">Waiting for next delivery...</span>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </ContainerScroll>
+    </div>
+  );
+}
+
+Please completely replace the content of `app/page.tsx` with the code above.
