@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 // In dev: http://localhost:8000
 // In prod: https://your-backend-url.com
 // ============================================================
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_URL || "https://backend-testing-ai2t.onrender.com";
 
 interface AgentData {
   match_data: {
